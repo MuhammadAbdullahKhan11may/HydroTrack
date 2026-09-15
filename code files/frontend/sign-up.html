@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Your Account — HydroTrack</title>
+<meta name="description" content="Create a HydroTrack account to start tracking your daily hydration.">
+<link rel="stylesheet" href="sign-up.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+</head>
+<body>
+
+  <div class="auth-page">
+
+    <a href="index.html" class="auth-logo" aria-label="HydroTrack home">
+      <i data-lucide="droplet" class="logo-icon"></i>
+      <span class="logo-text">Hydro<span class="logo-accent">Track</span></span>
+    </a>
+
+    <main class="auth-shell">
+
+      <!-- LEFT BRAND PANEL (hidden on mobile) -->
+      <aside class="auth-brand" aria-hidden="true">
+        <div class="auth-brand-inner">
+          <i data-lucide="droplet" class="auth-brand-icon"></i>
+          <h2>HydroTrack</h2>
+          <p class="auth-brand-tag">Stay consistent.<br>Stay hydrated.</p>
+          <ul class="auth-brand-list">
+            <li><i data-lucide="check"></i> Track your daily intake</li>
+            <li><i data-lucide="check"></i> Build hydration streaks</li>
+            <li><i data-lucide="check"></i> See your weekly progress</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- SIGN-UP CARD -->
+      <section class="auth-card" aria-labelledby="signup-heading">
+        <h1 id="signup-heading">Create your HydroTrack account</h1>
+        <p class="auth-sub">Start tracking your hydration and build better habits.</p>
+
+        <div id="form-success" class="form-success hidden" role="status" aria-live="polite">
+          <i data-lucide="check-circle"></i>
+          <span>Account created successfully! Redirecting…</span>
+        </div>
+
+        <form id="signup-form" novalidate>
+
+          <!-- Full Name -->
+          <div class="field-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your full name"
+              autocomplete="name"
+              aria-describedby="name-error"
+              aria-invalid="false"
+            >
+            <p id="name-error" class="field-error hidden" role="alert"></p>
+          </div>
+
+          <!-- Email -->
+          <div class="field-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              aria-describedby="email-error"
+              aria-invalid="false"
+            >
+            <p id="email-error" class="field-error hidden" role="alert"></p>
+          </div>
+
+          <!-- Password -->
+          <div class="field-group">
+            <label for="password">Password</label>
+            <div class="password-field">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a strong password"
+                autocomplete="new-password"
+                aria-describedby="password-error password-strength-text"
+                aria-invalid="false"
+              >
+              <button type="button" id="toggle-password" class="toggle-password" aria-label="Show password">
+                <i data-lucide="eye" class="icon-eye"></i>
+                <i data-lucide="eye-off" class="icon-eye-off hidden"></i>
+              </button>
+            </div>
+
+            <div class="strength-meter" aria-hidden="true">
+              <span id="strength-bar" class="strength-bar"></span>
+            </div>
+            <p id="password-strength-text" class="strength-text"></p>
+
+            <p id="password-error" class="field-error hidden" role="alert"></p>
+          </div>
+
+          <!-- Terms -->
+          <div class="field-group terms-group">
+            <label class="terms-label" for="terms">
+              <input type="checkbox" id="terms" name="terms" aria-describedby="terms-error">
+              <span>I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></span>
+            </label>
+            <p id="terms-error" class="field-error hidden" role="alert"></p>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn btn-primary btn-full">Create Account</button>
+
+          <p class="auth-switch">
+            Already have an account? <a href="sign-in.html">Sign In</a>
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <a href="index.html" class="back-link">
+      <i data-lucide="arrow-left"></i> Back to HydroTrack
+    </a>
+  </div>
+
+  <script src="sign-up.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

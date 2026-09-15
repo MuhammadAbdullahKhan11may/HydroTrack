@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — HydroTrack</title>
+<meta name="description" content="Sign in to your HydroTrack account to continue tracking your hydration.">
+<link rel="stylesheet" href="sign-in.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+</head>
+<body>
+
+  <div class="auth-page">
+
+    <a href="index.html" class="auth-logo" aria-label="HydroTrack home">
+      <i data-lucide="droplet" class="logo-icon"></i>
+      <span class="logo-text">Hydro<span class="logo-accent">Track</span></span>
+    </a>
+
+    <main class="auth-shell">
+
+      <!-- LEFT BRAND PANEL (hidden on mobile/tablet) -->
+      <aside class="auth-brand" aria-hidden="true">
+        <div class="auth-brand-inner">
+          <i data-lucide="droplet" class="auth-brand-icon"></i>
+          <h2>HydroTrack</h2>
+          <p class="auth-brand-tag">Stay consistent.<br>Stay hydrated.</p>
+          <ul class="auth-brand-list">
+            <li><i data-lucide="check"></i> Track your daily intake</li>
+            <li><i data-lucide="check"></i> Build hydration streaks</li>
+            <li><i data-lucide="check"></i> Review weekly progress</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- SIGN-IN CARD -->
+      <section class="auth-card" aria-labelledby="signin-heading">
+        <h1 id="signin-heading">Welcome back</h1>
+        <p class="auth-sub">Sign in to continue tracking your hydration.</p>
+
+        <div id="auth-error" class="form-error hidden" role="alert">
+          <i data-lucide="alert-circle"></i>
+          <span id="auth-error-text"></span>
+        </div>
+
+        <div id="form-success" class="form-success hidden" role="status" aria-live="polite">
+          <i data-lucide="check-circle"></i>
+          <span>Signed in successfully! Redirecting…</span>
+        </div>
+
+        <form id="signin-form" novalidate>
+
+          <!-- Email -->
+          <div class="field-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              aria-describedby="email-error"
+              aria-invalid="false"
+            >
+            <p id="email-error" class="field-error hidden" role="alert"></p>
+          </div>
+
+          <!-- Password -->
+          <div class="field-group">
+            <div class="field-row-header">
+              <label for="password">Password</label>
+              <button type="button" id="forgot-password-btn" class="forgot-link">Forgot password?</button>
+            </div>
+            <div class="password-field">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                aria-describedby="password-error"
+                aria-invalid="false"
+              >
+              <button type="button" id="toggle-password" class="toggle-password" aria-label="Show password">
+                <i data-lucide="eye" class="icon-eye"></i>
+                <i data-lucide="eye-off" class="icon-eye-off hidden"></i>
+              </button>
+            </div>
+            <p id="password-error" class="field-error hidden" role="alert"></p>
+            <p id="forgot-password-msg" class="field-note hidden" role="status" aria-live="polite">
+              Password recovery is not available in this frontend demo.
+            </p>
+          </div>
+
+          <!-- Remember me -->
+          <div class="field-group remember-group">
+            <label class="remember-label" for="remember">
+              <input type="checkbox" id="remember" name="remember">
+              <span>Remember me</span>
+            </label>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn btn-primary btn-full">Sign In</button>
+
+          <p class="auth-switch">
+            Don't have an account? <a href="sign-up.html">Create one</a>
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <a href="index.html" class="back-link">
+      <i data-lucide="arrow-left"></i> Back to HydroTrack
+    </a>
+  </div>
+
+  <script src="sign-in.js" defer></script>
+</body>
+</html>

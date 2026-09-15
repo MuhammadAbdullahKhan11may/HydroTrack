@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HydroTrack — Stay Hydrated, Stay Amazing</title>
+<link rel="stylesheet" href="desktop-version.css">
+<link rel="stylesheet" href="mobile-version.css">
+<link rel="stylesheet" href="tablet-version.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+</head>
+<body data-theme="light">
+
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="#" class="logo" data-page="today">
+        <i data-lucide="droplet" class="logo-icon"></i>
+        <span class="logo-text">Hydro<span class="logo-accent">Track</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <button class="nav-link active" data-page="today" type="button">
+          <i data-lucide="home"></i><span>Today</span>
+        </button>
+        <button class="nav-link" data-page="progress" type="button">
+          <i data-lucide="bar-chart-2"></i><span>Progress</span>
+        </button>
+        <button class="nav-link" data-page="settings" type="button">
+          <i data-lucide="settings"></i><span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="nav-actions">
+
+  <button
+    id="theme-toggle"
+    class="theme-toggle"
+    type="button"
+    aria-label="Toggle dark mode"
+    aria-pressed="false"
+  >
+    <i data-lucide="sun" class="icon-sun"></i>
+    <i data-lucide="moon" class="icon-moon"></i>
+  </button>
+
+  <button
+    id="logout-btn"
+    class="logout-btn"
+    type="button"
+    aria-label="Sign out"
+  >
+    <i data-lucide="log-out"></i>
+    <span>Logout</span>
+  </button>
+
+  <div class="profile-circle" aria-hidden="true">MA</div>
+
+</div>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <!-- ============ TODAY ============ -->
+    <section id="today" class="page-section active" aria-labelledby="today-heading">
+      <div class="page-header">
+        <div>
+          <h1 id="today-heading">Stay hydrated,<br>stay amazing.</h1>
+        </div>
+        <div class="date-badge">
+          <i data-lucide="calendar"></i>
+          <div>
+            <span id="current-date">Loading date…</span>
+            <span class="date-sub">Small sips. A healthier you.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="today-grid">
+        <!-- Main hydration card -->
+        <div class="card hydration-card">
+          <div class="card-header">
+            <h2><span class="dot"></span> Today's Hydration</h2>
+            <span id="status-badge" class="status-badge">On Track</span>
+          </div>
+
+          <div id="empty-state-banner" class="empty-state hidden">
+            <i data-lucide="cup-soda"></i>
+            <p class="empty-title">No water logged yet.</p>
+            <p class="empty-sub">Start your hydration journey! Add your first glass of water.</p>
+          </div>
+
+          <div id="success-banner" class="success-banner hidden">
+            <span>🎉</span>
+            <p>Daily Goal Completed! You're doing amazing.</p>
+          </div>
+
+          <div class="hydration-body">
+            <div class="ring-wrap">
+              <svg viewBox="0 0 220 220" class="ring-svg" role="img" aria-label="Hydration progress">
+                <circle class="ring-track" cx="110" cy="110" r="95"></circle>
+                <circle id="ring-fill" class="ring-fill" cx="110" cy="110" r="95"></circle>
+              </svg>
+              <div class="ring-center">
+                <i data-lucide="droplet" class="ring-drop"></i>
+                <span id="percentage-text" class="ring-percent">0%</span>
+                <span id="intake-text" class="ring-intake">0 L / 2.5 L</span>
+                <span class="ring-label">Completed</span>
+              </div>
+            </div>
+
+            <div class="goal-col">
+              <div class="goal-display-label">Daily Goal</div>
+              <div id="goal-display" class="goal-display">
+                <i data-lucide="cup-soda"></i>
+                <span id="goal-display-text">2.5 Liters (10 glasses)</span>
+              </div>
+
+              <div class="stats-row">
+                <div class="stat-pill">
+                  <i data-lucide="droplet"></i>
+                  <div>
+                    <span id="remaining-text">2.5 L</span>
+                    <small>remaining</small>
+                  </div>
+                </div>
+                <div class="stat-pill">
+                  <i data-lucide="cup-soda"></i>
+                  <div>
+                    <span id="glasses-left-text">10</span>
+                    <small>glasses left</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="actions-row">
+                <button id="remove-water-btn" class="btn btn-ghost" type="button">
+                  <i data-lucide="minus"></i> Remove
+                </button>
+                <button id="add-water-btn" class="btn btn-primary" type="button">
+                  <i data-lucide="plus"></i> Add Water
+                </button>
+              </div>
+
+              <div id="water-error" class="inline-error hidden" role="alert"></div>
+            </div>
+          </div>
+
+          <div class="quick-add">
+            <span class="quick-add-label">Quick Add</span>
+            <div class="quick-add-grid">
+              <button class="quick-add-btn" type="button" data-amount="250"><i data-lucide="cup-soda"></i> +250 ml</button>
+              <button class="quick-add-btn" type="button" data-amount="500"><i data-lucide="cup-soda"></i> +500 ml</button>
+              <button class="quick-add-btn" type="button" data-amount="750"><i data-lucide="cup-soda"></i> +750 ml</button>
+              <button class="quick-add-btn" type="button" data-amount="1000"><i data-lucide="cup-soda"></i> +1,000 ml</button>
+            </div>
+          </div>
+
+          <div class="quote-bar">
+            <i data-lucide="quote"></i>
+            <span>Consistency today builds a healthier tomorrow.</span>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="side-col">
+                    <div class="hero-image-card">
+            <img src="images/desktop-image1.png" alt="A glass of water beside a green plant, representing a better you, one glass at a time">
+          </div>
+
+          <div class="card glance-card">
+            <h3><i data-lucide="bar-chart-2"></i> Today at a Glance</h3>
+            <div class="glance-grid">
+              <div class="glance-item">
+                <i data-lucide="droplet"></i>
+                <div>
+                  <span id="glance-consumed">0 L</span>
+                  <small>Water consumed</small>
+                </div>
+              </div>
+              <div class="glance-item">
+                <i data-lucide="target"></i>
+                <div>
+                  <span id="glance-goal">2.5 L</span>
+                  <small>Daily goal</small>
+                </div>
+              </div>
+              <div class="glance-item">
+                <i data-lucide="cup-soda"></i>
+                <div>
+                  <span id="glance-glasses">0 / 10</span>
+                  <small>Glasses</small>
+                </div>
+              </div>
+              <div class="glance-item">
+                <i data-lucide="pie-chart"></i>
+                <div>
+                  <span id="glance-remaining-percent">100%</span>
+                  <small>Remaining</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROGRESS ============ -->
+    <section id="progress" class="page-section" aria-labelledby="progress-heading">
+      <div class="page-header">
+        <div>
+          <span class="eyebrow">Overview</span>
+          <h1 id="progress-heading">Hydration Summary</h1>
+          <p class="page-sub">A quick look at your journey. Small steps. A healthier you.</p>
+        </div>
+        <div class="week-range-badge">
+          <i data-lucide="calendar"></i>
+          <span id="week-range-text">This week</span>
+        </div>
+      </div>
+
+      <div class="summary-cards-grid">
+        <div class="card summary-card">
+          <i data-lucide="flame" class="summary-icon icon-orange"></i>
+          <div class="summary-body">
+            <span class="summary-label">Current Streak</span>
+            <span id="streak-value" class="summary-value">0 days</span>
+            <span id="streak-longest" class="summary-note">Longest streak: 0 days</span>
+          </div>
+        </div>
+        <div class="card summary-card">
+          <i data-lucide="bar-chart-3" class="summary-icon icon-blue"></i>
+          <div class="summary-body">
+            <span class="summary-label">Weekly Average</span>
+            <span id="weekly-avg-value" class="summary-value">0 glasses/day</span>
+            <span id="weekly-avg-note" class="summary-note">This week</span>
+          </div>
+        </div>
+        <div class="card summary-card">
+          <i data-lucide="target" class="summary-icon icon-green"></i>
+          <div class="summary-body">
+            <span class="summary-label">Goals Completed</span>
+            <span id="goals-completed-value" class="summary-value">0 / 7</span>
+            <div class="mini-bar"><span id="goals-completed-bar" style="width:0%"></span></div>
+          </div>
+        </div>
+        <div class="card summary-card">
+          <div class="mini-ring-wrap">
+            <svg viewBox="0 0 60 60" class="mini-ring">
+              <circle class="mini-ring-track" cx="30" cy="30" r="24"></circle>
+              <circle id="mini-ring-fill" class="mini-ring-fill" cx="30" cy="30" r="24"></circle>
+            </svg>
+          </div>
+          <div class="summary-body">
+            <span class="summary-label">Today's Progress</span>
+            <span id="today-percent-value" class="summary-value">0%</span>
+            <span id="today-percent-note" class="summary-note">Keep going!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-columns">
+        <div class="card chart-card">
+          <div class="chart-card-header">
+            <h3><i data-lucide="trending-up"></i> Weekly Progress</h3>
+            <div class="unit-toggle" role="group" aria-label="Chart display unit">
+              <button class="unit-toggle-btn active" type="button" data-unit="glasses">Glasses</button>
+              <button class="unit-toggle-btn" type="button" data-unit="liters">Liters</button>
+            </div>
+          </div>
+          <div class="chart-goal-line-label">
+            <span id="chart-goal-label">Daily goal: 10 glasses</span>
+          </div>
+          <div id="weekly-chart" class="weekly-chart" role="img" aria-label="Weekly hydration chart"></div>
+          <div class="chart-legend">
+            <span><i class="legend-dot legend-filled"></i> Water consumed</span>
+            <span><i class="legend-dot legend-empty"></i> Remaining to goal</span>
+            <span><i class="legend-dash"></i> Daily goal</span>
+            <span><i data-lucide="check-circle" class="legend-check"></i> Goal completed</span>
+          </div>
+        </div>
+
+        <div class="side-col">
+          <div class="card weekly-summary-card">
+            <h3><i data-lucide="pie-chart"></i> Weekly Summary</h3>
+            <div class="ws-grid">
+              <div class="ws-item">
+                <i data-lucide="cup-soda"></i>
+                <div><span id="ws-total">0 / 0</span><small>Glasses this week</small></div>
+              </div>
+              <div class="ws-item">
+                <i data-lucide="target"></i>
+                <div><span id="ws-completion">0%</span><small>Goal completion</small></div>
+              </div>
+              <div class="ws-item">
+                <i data-lucide="droplet"></i>
+                <div><span id="ws-avg">0</span><small>Daily average (glasses)</small></div>
+              </div>
+              <div class="ws-item">
+                <i data-lucide="trophy"></i>
+                <div><span id="ws-days-on-goal">0</span><small>Days on goal</small></div>
+              </div>
+            </div>
+            <div class="ws-progress-row">
+              <span>Weekly Goal Progress</span>
+              <span id="ws-progress-percent">0%</span>
+            </div>
+            <div class="progress-bar-track"><span id="ws-progress-bar" style="width:0%"></span></div>
+          </div>
+
+          <div class="card quote-card">
+            <i data-lucide="quote"></i>
+            <p>“Small steps every day lead to big results.”</p>
+            <span>Keep going <i data-lucide="arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card achievements-card">
+        <div class="achievements-header">
+          <h3><i data-lucide="trophy"></i> Achievements</h3>
+        </div>
+        <div id="achievements-list" class="achievements-list"></div>
+      </div>
+    </section>
+
+    <!-- ============ SETTINGS ============ -->
+    <section id="settings" class="page-section" aria-labelledby="settings-heading">
+      <div class="page-header">
+        <div>
+          <span class="eyebrow">Settings</span>
+          <h1 id="settings-heading">Personalize Your Hydration</h1>
+          <p class="page-sub">Adjust your preferences and make HydroTrack work for you.</p>
+        </div>
+        <p class="settings-quote">“A healthier you starts with a hydrated today.”</p>
+      </div>
+
+      <div class="card settings-card">
+        <div class="settings-col">
+          <div class="settings-col-header">
+            <i data-lucide="target"></i>
+            <div>
+              <h4>Daily Water Goal</h4>
+              <p>Set your daily hydration target.</p>
+            </div>
+          </div>
+          <div class="goal-input-row">
+            <input type="number" id="goal-input" min="500" max="8000" step="50" value="2500" aria-describedby="goal-error">
+            <span>ml</span>
+          </div>
+          <p class="field-hint">Recommended: 2000 – 4000 ml</p>
+          <p id="goal-error" class="field-error hidden" role="alert"></p>
+        </div>
+
+        <div class="settings-col">
+          <div class="settings-col-header">
+            <i data-lucide="cup-soda"></i>
+            <div>
+              <h4>Serving Size</h4>
+              <p>Choose your quick-add amount.</p>
+            </div>
+          </div>
+          <div class="option-row">
+            <button class="option-btn serving-option" type="button" data-serving="250">250 ml</button>
+            <button class="option-btn serving-option" type="button" data-serving="500">500 ml</button>
+          </div>
+          <p class="field-hint">Used by the Add / Remove Water buttons on Today.</p>
+        </div>
+
+        <div class="settings-col">
+          <div class="settings-col-header">
+            <i data-lucide="ruler"></i>
+            <div>
+              <h4>Measurement Unit</h4>
+              <p>Select your preferred unit.</p>
+            </div>
+          </div>
+          <div class="option-row">
+            <button class="option-btn unit-option" type="button" data-unit="ml">Milliliters (ml)</button>
+            <button class="option-btn unit-option" type="button" data-unit="L">Liters (L)</button>
+          </div>
+          <p class="field-hint">Display only — data is always stored in ml.</p>
+        </div>
+
+        <div class="settings-col">
+          <div class="settings-col-header">
+            <i data-lucide="rotate-ccw"></i>
+            <div>
+              <h4>Reset Today's Progress</h4>
+              <p>Clear your water intake for today.</p>
+            </div>
+          </div>
+          <button id="reset-progress-btn" class="btn btn-danger-outline" type="button">
+            <i data-lucide="trash-2"></i> Reset Today's Progress
+          </button>
+          <p class="field-hint field-hint-danger">This will permanently clear today's water intake. This action cannot be undone.</p>
+        </div>
+      </div>
+
+      <div class="settings-actions">
+        <button id="save-settings-btn" class="btn btn-primary" type="button">
+          <i data-lucide="check"></i> Save Changes
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Reset confirmation modal -->
+  <div id="reset-modal" class="modal-overlay hidden">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-icon"><i data-lucide="trash-2"></i></div>
+      <h3 id="modal-title">Reset Today's Progress?</h3>
+      <p>This will permanently clear today's water intake. This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button id="reset-cancel-btn" class="btn btn-ghost" type="button">Cancel</button>
+        <button id="reset-confirm-btn" class="btn btn-danger" type="button">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text"><i data-lucide="droplet"></i> Hydro<span class="logo-accent">Track</span></span>
+        <p>Stay consistent. Stay hydrated.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i data-lucide="github"></i> View on GitHub</a>
+        <span class="footer-built"><i data-lucide="code"></i> Built with HTML, CSS &amp; JavaScript</span>
+      </div>
+      <div class="footer-copy">
+        <span>© <span id="current-year"></span> Muhammad Abdullah Khan. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

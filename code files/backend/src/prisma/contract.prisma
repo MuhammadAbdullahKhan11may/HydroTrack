@@ -1,0 +1,35 @@
+// use prisma-8
+
+model User {
+  id           Int               @id @default(autoincrement())
+  name         String
+  email        String            @unique
+  passwordHash String
+  settings     UserSettings?
+  hydration    HydrationRecord[]
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
+}
+
+model UserSettings {
+  id              Int               @id @default(autoincrement())
+  userId          Int               @unique
+  dailyGoal       Int               @default(2500)
+  servingSize     Int               @default(250)
+  measurementUnit String            @default("ml")
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt       TimestamptzString @default(now())
+  updatedAt       temporal.updatedAtString()
+}
+
+model HydrationRecord {
+  id          Int               @id @default(autoincrement())
+  userId      Int
+  date        DateString
+  waterIntake Int               @default(0)
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   TimestamptzString @default(now())
+  updatedAt   temporal.updatedAtString()
+
+  @@unique([userId, date])
+}

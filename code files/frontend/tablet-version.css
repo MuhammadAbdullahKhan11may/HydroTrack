@@ -1,0 +1,45 @@
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* Navbar — keep top nav, compact it */
+  .navbar-inner{ padding: 14px 24px; gap: 20px; }
+  .logo-text{ font-size: 19px; }
+  .nav-links{ gap: 2px; }
+  .nav-link{ padding: 8px 10px; font-size: 14px; white-space: nowrap; }
+  .nav-link span{ display: inline; }
+  .nav-actions{ gap: 10px; }
+  .theme-toggle, .profile-circle{ width: 36px; height: 36px; }
+
+  .app-main{ padding: 28px 24px 60px; }
+  .page-header{ margin-bottom: 24px; }
+  .page-header h1{ font-size: 30px; }
+  .footer-inner{ padding: 26px 24px; }
+
+  /* Today page */
+  .hydration-body{ gap: 20px; }
+  .ring-wrap{ width: 170px; height: 170px; }
+  .ring-percent{ font-size: 30px; }
+  .goal-col{ min-width: 220px; gap: 12px; }
+
+  .quick-add-grid{ grid-template-columns: repeat(2, 1fr); }
+  .hero-image-card{ min-height: 180px; }
+  .glance-grid{ gap: 10px; }
+
+  /* Progress page — desktop already stacks .progress-columns to 1fr under 1300px */
+  .summary-cards-grid{ grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+  .weekly-chart{ gap: 10px; height: 190px; padding: 16px 4px 0; }
+  .chart-bar-track{ max-width: 32px; }
+  .chart-labels{ gap: 10px; }
+  .chart-day-label{ font-size: 11.5px; }
+  .chart-value{ font-size: 11.5px; }
+
+  .achievements-list{ grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  /* Settings page — desktop already forces .settings-card to 1fr 1fr under 1300px,
+     giving the preferred 2x2 grid. Just tighten spacing. */
+  .settings-card{ gap: 20px; padding: 24px; }
+  .settings-actions{ margin-top: 20px; }
+
+  /* Modal */
+  .modal-box{ max-width: 380px; }
+}
